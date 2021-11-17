@@ -2,6 +2,15 @@ FROM gitpod/workspace-full
 
 # Install custom tools, runtime, etc.
 RUN brew install fzf
-RUN brew install homebrew/cask/google-cloud-sdk
 RUN pip install -U crcmod click google-api-python-client
- 
+
+# Downloading gcloud package
+RUN curl https://dl.google.com/dl/cloudsdk/release/google-cloud-sdk.tar.gz > /tmp/google-cloud-sdk.tar.gz
+
+# Installing the package
+RUN mkdir -p /usr/local/gcloud \
+  && tar -C /usr/local/gcloud -xvf /tmp/google-cloud-sdk.tar.gz \
+  && /usr/local/gcloud/google-cloud-sdk/install.sh
+
+# Adding the package path to local
+ENV PATH $PATH:/usr/local/gcloud/google-cloud-sdk/bin
