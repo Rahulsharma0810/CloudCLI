@@ -1,1 +1,7 @@
-image: sharmarahul0810/cloud-cli
+FROM gitpod/workspace-full
+
+# Install custom tools, runtime, etc.
+RUN brew install fzf 
+brew install --cask google-cloud-sdk
+
+RUN pip install googleapiclient google-api-python-client click autopep8
