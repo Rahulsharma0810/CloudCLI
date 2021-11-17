@@ -1,11 +1,11 @@
 import json
 from pprint import pprint
 from googleapiclient import discovery
+import click
 from oauth2client.client import GoogleCredentials
 
 credentials = GoogleCredentials.get_application_default()
 service = discovery.build('compute', 'v1', credentials=credentials)
-
 
 def list_instances_by_filter(project, filter):
     """
